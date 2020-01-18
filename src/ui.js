@@ -8,7 +8,8 @@ class UI {
 
   // show the goals in the list
   showGoals(goals) {
-    const goalsList = this.goals.children[0];
+    const listGroup = document.createElement("ul");
+    listGroup.className = "list-group";
 
     goals.forEach(goal => {
       const goalItem = this.buildGoalItem(
@@ -17,8 +18,10 @@ class UI {
         goal.date
       );
 
-      goalsList.appendChild(goalItem);
+      listGroup.appendChild(goalItem);
     });
+
+    this.goals.innerHTML = listGroup.innerHTML;
   }
 
   addGoal(input) {
@@ -30,8 +33,8 @@ class UI {
   getInputData() {
     return {
       title: this.title.value,
-      description: this.title.description,
-      date: Date.now()
+      description: this.details.value,
+      date: new Date().toJSON()
     };
   }
 
