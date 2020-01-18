@@ -20,6 +20,21 @@ function getGoals() {
 
 // Handle submitting a new goal
 function handleGoalSubmit(e) {
-  console.log(e.target);
+  const formInput = ui.getInputData();
+  const postData = this.createGoalFromForm(formInput);
+
+  http
+    .post("http://localhost:3000/goals", formInput)
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+
+  ui.showGoals();
+  ui.clearForm();
   e.preventDefault();
+}
+
+function createGoalFromForm(formInput) {
+  return {
+    // TODO: implement.
+  };
 }
