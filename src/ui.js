@@ -8,7 +8,16 @@ class UI {
 
   // show the goals in the list
   showGoals(goals) {
-    console.log(data);
+    const goalsList = this.goals.children[0];
+    let listContent = "";
+
+    goals.forEach(goal => {
+      const goalItem = document.createElement("li");
+      goalItem.className =
+        "list-group-item d-flex justify-content-between align-items-center";
+      goalItem.innerText = goal.title;
+      goalsList.appendChild(goalItem);
+    });
   }
 }
 
