@@ -1,0 +1,62 @@
+{
+  "goals": [
+    {
+      "id": 1,
+      "title": "Reach 90kg series weight in bench press",
+      "description": "I want to gain back my pushing power to the level where it was some years ago.",
+      "date": "2020-01-01T18:25:43.511Z",
+      "deadline": "2020-07-01T18:25:43.511Z",
+      "category": "Sports",
+      "action_items": [
+        {
+          "action": "Applying new chest routine with pre-tension.",
+          "action_timestamp": "2020-01-05T18:25:43.511Z"
+        }
+      ],
+      "closed": "false",
+      "conclusion": ""
+    },
+    {
+      "id": 2,
+      "title": "Learn JavaScript deeply",
+      "description": "I want to learn the fundamentals and advanced topics of JS and to use a popular framework.",
+      "date": "2019-09-01T18:25:43.511Z",
+      "deadline": "2020-04-01T18:25:43.511Z",
+      "category": "Software Development",
+      "action_items": [
+        {
+          "action": "Udemy Course done on modern javascript.",
+          "action_timestamp": "2020-01-05T18:25:43.511Z"
+        },
+        {
+          "action": "Own Goaltracker app based on the experiences from the course started.",
+          "action_timestamp": "2020-01-10T18:25:43.511Z"
+        }
+      ],
+      "closed": "false",
+      "conclusion": ""
+    },
+    {
+      "title": "Fuck every bitches",
+      "description": "It would help to get a nice STD.",
+      "date": "2020-01-18T18:05:57.996Z",
+      "deadline": "2020-01-18T18:05:57.996Z",
+      "category": "General",
+      "action_items": [],
+      "closed": "false",
+      "conclusion": "",
+      "id": 3
+    },
+    {
+      "title": "Go to a different continent",
+      "description": "I've never ever left Europe in my life, at the age of 23, it's time to do that!",
+      "date": "2020-01-18T18:07:46.328Z",
+      "deadline": "2020-01-18T18:07:46.328Z",
+      "category": "General",
+      "action_items": [],
+      "closed": "false",
+      "conclusion": "",
+      "id": 4
+    }
+  ]
+}

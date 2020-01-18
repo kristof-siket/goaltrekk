@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/4/litera/bootstrap.min.css"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <title>My JavaScript App</title>
+  </head>
+  <body>
+    <!-- Page navbar (top) -->
+    <nav class="navbar navbar-dark bg-primary mb-3">
+      <div class="container">
+        <a href="#" class="navbar-brand">AchieveMyGoal</a>
+      </div>
+    </nav>
+    <!-- Main form in a card (for adding and modifying) -->
+    <div class="container">
+      <div class="card border-primary card-body card-form mb-3">
+        <div class="card-body">
+          <h4 class="card-title">What's today's goal?</h4>
+          <form>
+            <div class="form-group">
+              <label for="goal-title">Title of your goal</label>
+              <input
+                placeholder="Short summary of your goal..."
+                type="text"
+                id="goal-title"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label for="goal-details">Details of your goal</label>
+              <input
+                placeholder="Brief description of what you want to achieve..."
+                type="text"
+                id="goal-details"
+                class="form-control"
+              />
+            </div>
+            <input type="hidden" id="id" />
+            <button id="goal-submit" class="btn btn-primary btn-block">
+              Add Goal
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- List of goals with a filter form -->
+      <div class="goals"></div>
+    </div>
+
+    <!-- Footer with copyright -->
+    <footer class="page-footer mt-5 p-3 text-center bg-light">
+      AchieveMyGoal &copy;
+    </footer>
+    <!-- Compiled and minified JavaScript -->
+    <script src="build/app.bundle.js"></script>
+  </body>
+</html>
