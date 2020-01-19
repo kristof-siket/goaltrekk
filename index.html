@@ -15,17 +15,17 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
-    <title>My JavaScript App</title>
+    <title>GoalTrekk</title>
   </head>
   <body>
     <!-- Page navbar (top) -->
     <nav class="navbar navbar-dark bg-primary mb-3">
       <div class="container">
-        <a href="#" class="navbar-brand">AchieveMyGoal</a>
+        <a href="#" class="navbar-brand">GoalTrekk</a>
       </div>
     </nav>
     <!-- Main form in a card (for adding and modifying) -->
-    <div class="container">
+    <div class="container mainFormContainer">
       <div class="card border-primary card-body card-form mb-3">
         <div class="card-body">
           <h4 class="card-title">What's today's goal?</h4>
@@ -55,6 +55,7 @@
           </form>
         </div>
       </div>
+      <input type="hidden" id="formEnd" />
       <!-- List of goals with a filter form -->
       <div class="goals"></div>
     </div>

@@ -23,15 +23,18 @@ function getGoals() {
 // Handle submitting a new goal
 function handleGoalSubmit(e) {
   const formInput = ui.getInputData();
-  const postData = createGoalFromForm(formInput);
+  if (formInput.description !== "" && formInput.title != "") {
+    const postData = createGoalFromForm(formInput);
 
-  http
-    .post("http://localhost:3000/goals", postData)
-    .then(data => {
-      getGoals();
-      ui.clearForm();
-    })
-    .catch(err => console.log(err));
+    http
+      .post("http://localhost:3000/goals", postData)
+      .then(data => {
+        getGoals();
+        ui.clearForm();
+        ui.showNotification("Goal added successfully.", "alert-success");
+      })
+      .catch(err => console.log(err));
+  }
 
   e.preventDefault();
 }
@@ -47,7 +50,7 @@ function handleGoalDelete(e) {
         .delete(`http://localhost:3000/goals/${id}`)
         .then(data => {
           getGoals();
-          // ui.showNotification("Goal deleted successfully.", style);
+          ui.showNotification("Goal deleted successfully.", "alert-success");
         })
         .catch(err => console.log(err));
     }

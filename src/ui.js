@@ -24,6 +24,38 @@ class UI {
     this.goals.innerHTML = listItemHtml;
   }
 
+  showNotification(message, className) {
+    // Find the location on the UI
+    const formEnd = document.querySelector(".formEnd");
+    const container = document.querySelector(".mainFormContainer");
+
+    // Build up the notification
+    const notification = document.createElement("div");
+    notification.className = `alert alert-dismissible ${className}`;
+
+    notification.innerHTML = `
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>${message}</strong>
+    `;
+
+    // Add the notification to the DOM
+    container.insertBefore(notification, this.goals);
+
+    // Remove the noti with timeout
+    setTimeout(() => this.clearAlert(), 3000);
+
+    // Scroll to the top
+    window.scrollTo(0, 0);
+  }
+
+  clearAlert() {
+    const currentAlert = document.querySelector(".alert");
+
+    if (currentAlert) {
+      currentAlert.remove();
+    }
+  }
+
   getInputData() {
     return {
       title: this.title.value,
