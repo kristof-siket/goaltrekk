@@ -8,26 +8,20 @@ class UI {
 
   // show the goals in the list
   showGoals(goals) {
-    const listGroup = document.createElement("ul");
-    listGroup.className = "list-group";
+    let listItemHtml = "";
 
     goals.forEach(goal => {
       const goalItem = this.buildGoalItem(
         goal.title,
         goal.description,
-        goal.date
+        goal.date,
+        goal.id
       );
 
-      listGroup.appendChild(goalItem);
+      listItemHtml += goalItem;
     });
 
-    this.goals.innerHTML = listGroup.innerHTML;
-  }
-
-  addGoal(input) {
-    const goalsList = this.goals.children[0];
-    const newGoal = this.buildGoalItem(input.title, input.description);
-    goalsList.appendChild(newGoal);
+    this.goals.innerHTML = listItemHtml;
   }
 
   getInputData() {
@@ -44,40 +38,24 @@ class UI {
   }
 
   // Build up a goal list item
-  buildGoalItem(title, description, date) {
+  buildGoalItem(title, description, date, id) {
     if (!date) {
-      date = Date.now();
+      date = new Date();
     }
-    // Build the list item
-    const goalItem = document.createElement("a");
-    goalItem.setAttribute("href", "#");
-    goalItem.className =
-      "list-group-item list-group-item-action flex-column align-items-start";
 
-    // Build the title div
-    const titleContainer = document.createElement("div");
-    titleContainer.className = "d-flex w-100 justify-content-between";
+    const listElement = `
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">${title}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">Created on <p class="text-muted">${date}</p></h6>
+          <p class="card-text">${description}</p>
+          <a href="#" class="remove-goal card-link" data-id="${id}">
+            <i style="color: red" class="fa fa-remove"></i>
+          </a>
+        </div>
+      </div><br>`;
 
-    const goalItemTitle = document.createElement("h5");
-    goalItemTitle.className = "mb-2 h5";
-    goalItemTitle.innerText = title;
-
-    const goalItemCreationDate = document.createElement("small");
-    goalItemCreationDate.innerText = `Created on ${date.toString()}`;
-
-    titleContainer.appendChild(goalItemTitle);
-    titleContainer.appendChild(goalItemCreationDate);
-
-    // Build the description
-    const goalItemDetails = document.createElement("p");
-    goalItemDetails.className = "mb-2";
-    goalItemDetails.textContent = description;
-
-    // Put together
-    goalItem.appendChild(titleContainer);
-    goalItem.appendChild(goalItemDetails);
-
-    return goalItem;
+    return listElement;
   }
 }
 

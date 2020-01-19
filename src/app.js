@@ -1,7 +1,6 @@
 import { http } from "./http";
 import { ui } from "./ui";
 
-// Fetch all the goals onload
 // Get posts on DOM load
 document.addEventListener("DOMContentLoaded", getGoals);
 
@@ -9,6 +8,9 @@ document.addEventListener("DOMContentLoaded", getGoals);
 document
   .querySelector("#goal-submit")
   .addEventListener("click", handleGoalSubmit);
+
+// Listen for Delete Goal
+document.querySelector(".goals").addEventListener("click", handleGoalDelete);
 
 // Fetch the goals to initialize the app
 function getGoals() {
@@ -30,6 +32,26 @@ function handleGoalSubmit(e) {
       ui.clearForm();
     })
     .catch(err => console.log(err));
+
+  e.preventDefault();
+}
+
+// Handle removing an existing goal
+function handleGoalDelete(e) {
+  if (e.target.parentNode.classList.contains("remove-goal")) {
+    const id = parseInt(e.target.parentNode.dataset.id);
+
+    // Todo: add ui response for successful delete.
+    if (id && confirm("Are you sure?")) {
+      http
+        .delete(`http://localhost:3000/goals/${id}`)
+        .then(data => {
+          getGoals();
+          // ui.showNotification("Goal deleted successfully.", style);
+        })
+        .catch(err => console.log(err));
+    }
+  }
 
   e.preventDefault();
 }
