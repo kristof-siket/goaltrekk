@@ -33,7 +33,12 @@ function handleGoalSubmit(e) {
         ui.clearForm();
         ui.showNotification("Goal added successfully.", "alert-success");
       })
-      .catch(err => console.log(err));
+      .catch(err =>
+        ui.showNotification(
+          "Something went wrong, goal could not be added. Please, try again.",
+          "alert-danger"
+        )
+      );
   }
 
   e.preventDefault();
@@ -52,7 +57,12 @@ function handleGoalDelete(e) {
           getGoals();
           ui.showNotification("Goal deleted successfully.", "alert-success");
         })
-        .catch(err => console.log(err));
+        .catch(err =>
+          ui.showNotification(
+            "Something went wrong, goal could not be deleted. Please, try again.",
+            "alert-danger"
+          )
+        );
     }
   }
 
