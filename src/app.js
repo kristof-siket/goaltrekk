@@ -1,7 +1,6 @@
 import { http } from "./http";
 import { ui } from "./ui";
 
-// Fetch all the goals onload
 // Get posts on DOM load
 document.addEventListener("DOMContentLoaded", getGoals);
 
@@ -9,6 +8,9 @@ document.addEventListener("DOMContentLoaded", getGoals);
 document
   .querySelector("#goal-submit")
   .addEventListener("click", handleGoalSubmit);
+
+// Listen for Delete Goal
+document.querySelector(".goals").addEventListener("click", handleGoalDelete);
 
 // Fetch the goals to initialize the app
 function getGoals() {
@@ -21,15 +23,48 @@ function getGoals() {
 // Handle submitting a new goal
 function handleGoalSubmit(e) {
   const formInput = ui.getInputData();
-  const postData = createGoalFromForm(formInput);
+  if (formInput.description !== "" && formInput.title != "") {
+    const postData = createGoalFromForm(formInput);
 
-  http
-    .post("http://localhost:3000/goals", postData)
-    .then(data => {
-      getGoals();
-      ui.clearForm();
-    })
-    .catch(err => console.log(err));
+    http
+      .post("http://localhost:3000/goals", postData)
+      .then(data => {
+        getGoals();
+        ui.clearForm();
+        ui.showNotification("Goal added successfully.", "alert-success");
+      })
+      .catch(err =>
+        ui.showNotification(
+          "Something went wrong, goal could not be added. Please, try again.",
+          "alert-danger"
+        )
+      );
+  }
+
+  e.preventDefault();
+}
+
+// Handle removing an existing goal
+function handleGoalDelete(e) {
+  if (e.target.parentNode.classList.contains("remove-goal")) {
+    const id = parseInt(e.target.parentNode.dataset.id);
+
+    // Todo: add ui response for successful delete.
+    if (id && confirm("Are you sure?")) {
+      http
+        .delete(`http://localhost:3000/goals/${id}`)
+        .then(data => {
+          getGoals();
+          ui.showNotification("Goal deleted successfully.", "alert-success");
+        })
+        .catch(err =>
+          ui.showNotification(
+            "Something went wrong, goal could not be deleted. Please, try again.",
+            "alert-danger"
+          )
+        );
+    }
+  }
 
   e.preventDefault();
 }
