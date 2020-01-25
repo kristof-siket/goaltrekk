@@ -12,6 +12,8 @@ document
 // Listen for Delete Goal
 document.querySelector(".goals").addEventListener("click", handleGoalDelete);
 
+// Listen for Edit Goal
+document.querySelector(".goals").addEventListener("click", handleGoalEdit);
 // Fetch the goals to initialize the app
 function getGoals() {
   http
@@ -23,22 +25,43 @@ function getGoals() {
 // Handle submitting a new goal
 function handleGoalSubmit(e) {
   const formInput = ui.getInputData();
-  if (formInput.description !== "" && formInput.title != "") {
+  if (formInput.description !== "" && formInput.title !== "") {
     const postData = createGoalFromForm(formInput);
 
-    http
-      .post("http://localhost:3000/goals", postData)
-      .then(data => {
-        getGoals();
-        ui.clearForm();
-        ui.showNotification("Goal added successfully.", "alert-success");
-      })
-      .catch(err =>
-        ui.showNotification(
-          "Something went wrong, goal could not be added. Please, try again.",
-          "alert-danger"
-        )
-      );
+    if (formInput.id === "") {
+      http
+        .post("http://localhost:3000/goals", postData)
+        .then(data => {
+          getGoals();
+          ui.clearForm();
+          ui.showNotification("Goal added successfully.", "alert-success");
+        })
+        .catch(err =>
+          ui.showNotification(
+            "Something went wrong, goal could not be added. Please, try again.",
+            "alert-danger"
+          )
+        );
+    } else {
+      // set the date to the current one (to update modification date)
+      postData.date = new Date().toJSON();
+
+      http
+        .put(`http://localhost:3000/goals/${formInput.id}`, postData)
+        .then(data => {
+          getGoals();
+          ui.changeFormState("add");
+          ui.showNotification("Goal updated successfully.", "alert-success");
+        })
+        .catch(err =>
+          ui.showNotification(
+            "Something went wrong, goal could not be updated. Please, try again.",
+            "alert-danger"
+          )
+        );
+    }
+  } else {
+    ui.showNotification("Please, fill out both fields!", "alert alert-danger");
   }
 
   e.preventDefault();
@@ -49,7 +72,6 @@ function handleGoalDelete(e) {
   if (e.target.parentNode.classList.contains("remove-goal")) {
     const id = parseInt(e.target.parentNode.dataset.id);
 
-    // Todo: add ui response for successful delete.
     if (id && confirm("Are you sure?")) {
       http
         .delete(`http://localhost:3000/goals/${id}`)
@@ -63,6 +85,42 @@ function handleGoalDelete(e) {
             "alert-danger"
           )
         );
+    }
+  }
+
+  e.preventDefault();
+}
+
+// Handle UI request for editing an existing goal
+function handleGoalEdit(e) {
+  if (e.target.parentNode.classList.contains("edit-goal")) {
+    const id = parseInt(e.target.parentNode.dataset.id);
+
+    if (id) {
+      // Spike: search for a better way to do complex traversing
+      const title =
+        e.target.parentElement.previousElementSibling.previousElementSibling
+          .previousElementSibling.previousElementSibling.textContent;
+
+      const date =
+        e.target.parentElement.previousElementSibling.previousElementSibling
+          .previousElementSibling.children[0].textContent;
+
+      const description =
+        e.target.parentElement.previousElementSibling.previousElementSibling
+          .textContent;
+      const dateObj = new Date(date);
+
+      const formData = {
+        id,
+        title,
+        description
+      };
+
+      ui.fillForm(formData);
+
+      // Scroll to the top
+      window.scrollTo(0, 0);
     }
   }
 

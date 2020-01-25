@@ -1,5 +1,6 @@
 class UI {
   constructor() {
+    this.id = document.querySelector("#id");
     this.title = document.querySelector("#goal-title");
     this.details = document.querySelector("#goal-details");
     this.submitGoal = document.querySelector("#goal-submit");
@@ -24,9 +25,36 @@ class UI {
     this.goals.innerHTML = listItemHtml;
   }
 
+  // fill the form with a goal data
+  fillForm(formData) {
+    this.id.value = formData.id;
+    this.title.value = formData.title;
+    this.details.value = formData.description;
+
+    this.changeFormState("edit");
+  }
+
+  changeFormState(selectedMode) {
+    if (selectedMode === "edit") {
+      this.submitGoal.textContent = "Update Goal";
+      this.submitGoal.className = "btn btn-warning btn-block";
+    } else if (selectedMode === "add") {
+      this.submitGoal.textContent = "Add Goal";
+      this.submitGoal.className = "btn btn-primary btn-block";
+
+      // clear the id to represent "nothing is selected" mode
+      this.id.value = "";
+    }
+  }
+
+  // show notification in a selected style and with a selected message
   showNotification(message, className) {
+    // if there is already an alert, remove it
+    if (document.querySelector(".alert")) {
+      this.clearAlert();
+    }
+
     // Find the location on the UI
-    const formEnd = document.querySelector(".formEnd");
     const container = document.querySelector(".mainFormContainer");
 
     // Build up the notification
@@ -58,6 +86,7 @@ class UI {
 
   getInputData() {
     return {
+      id: this.id.value,
       title: this.title.value,
       description: this.details.value,
       date: new Date().toJSON()
@@ -79,10 +108,13 @@ class UI {
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">${title}</h4>
-          <h6 class="card-subtitle mb-2 text-muted">Created on <p class="text-muted">${date}</p></h6>
+          <h6 class="card-subtitle mb-2 text-muted">Last modified on <p class="text-muted">${date}</p></h6>
           <p class="card-text">${description}</p>
-          <a href="#" class="remove-goal card-link" data-id="${id}">
+          <a href="#" class="remove-goal card-link" data-id="${id}" data-toggle="tooltip" data-placement="top" title="Remove goal">
             <i style="color: red" class="fa fa-remove"></i>
+          </a>
+          <a href="#" class="edit-goal card-link" data-id="${id}" data-toggle="tooltip" data-placement="top" title="Edit goal">
+            <i style="color: blue" class="fa fa-pencil"></i>
           </a>
         </div>
       </div><br>`;

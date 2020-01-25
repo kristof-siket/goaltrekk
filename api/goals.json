@@ -1,40 +1,26 @@
 {
   "goals": [
     {
-      "id": 1,
-      "title": "Reach 90kg series weight in bench press",
+      "title": "Reach 95kg series weight in bench press",
       "description": "I want to gain back my pushing power to the level where it was some years ago.",
-      "date": "2020-01-01T18:25:43.511Z",
-      "deadline": "2020-07-01T18:25:43.511Z",
-      "category": "Sports",
-      "action_items": [
-        {
-          "action": "Applying new chest routine with pre-tension.",
-          "action_timestamp": "2020-01-05T18:25:43.511Z"
-        }
-      ],
+      "date": "2020-01-25T16:57:33.961Z",
+      "deadline": "2020-01-25T16:57:33.961Z",
+      "category": "General",
+      "action_items": [],
       "closed": "false",
-      "conclusion": ""
+      "conclusion": "",
+      "id": 1
     },
     {
-      "id": 2,
-      "title": "Learn JavaScript deeply",
-      "description": "I want to learn the fundamentals and advanced topics of JS and to use a popular framework.",
-      "date": "2019-09-01T18:25:43.511Z",
-      "deadline": "2020-04-01T18:25:43.511Z",
-      "category": "Software Development",
-      "action_items": [
-        {
-          "action": "Udemy Course done on modern javascript.",
-          "action_timestamp": "2020-01-05T18:25:43.511Z"
-        },
-        {
-          "action": "Own Goaltracker app based on the experiences from the course started.",
-          "action_timestamp": "2020-01-10T18:25:43.511Z"
-        }
-      ],
+      "title": "Learn Python deeply",
+      "description": "I want to learn Python basics and then dig deep into data science.",
+      "date": "2020-01-25T16:58:41.728Z",
+      "deadline": "2020-01-25T16:58:41.728Z",
+      "category": "General",
+      "action_items": [],
       "closed": "false",
-      "conclusion": ""
+      "conclusion": "",
+      "id": 2
     },
     {
       "title": "Go to a different continent",
@@ -46,17 +32,6 @@
       "closed": "false",
       "conclusion": "",
       "id": 4
-    },
-    {
-      "title": "Fuck every bitches",
-      "description": "It would help to get a nice STD.",
-      "date": "2020-01-19T12:53:30.856Z",
-      "deadline": "2020-01-19T12:53:30.856Z",
-      "category": "General",
-      "action_items": [],
-      "closed": "false",
-      "conclusion": "",
-      "id": 5
     }
   ]
 }
