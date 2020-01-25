@@ -44,6 +44,9 @@ class UI {
 
       // clear the id to represent "nothing is selected" mode
       this.id.value = "";
+
+      // also clear the form
+      this.clearForm();
     }
   }
 
