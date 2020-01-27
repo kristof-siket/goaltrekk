@@ -6,6 +6,7 @@ class UI {
     this.submitGoal = document.querySelector("#goal-submit");
     this.goals = document.querySelector(".goals");
     this.back = document.querySelector("#goal-back");
+    this.action_summary = document.querySelector("#action-summary");
   }
 
   // show the goals in the list
@@ -98,6 +99,10 @@ class UI {
       description: this.details.value,
       date: new Date().toJSON()
     };
+  }
+
+  getActionSummary() {
+    return this.action_summary.value;
   }
 
   clearForm() {

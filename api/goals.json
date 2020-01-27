@@ -6,7 +6,12 @@
       "date": "2020-01-27T18:28:39.438Z",
       "deadline": "2020-01-27T18:28:39.438Z",
       "category": "General",
-      "action_items": [],
+      "action_items": [
+        {
+          "action_date": "2020-01-27T19:42:58.552Z",
+          "action_summary": "New way to train my chest with pre-burnout series."
+        }
+      ],
       "closed": "false",
       "conclusion": "",
       "id": 1

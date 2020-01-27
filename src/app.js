@@ -18,6 +18,11 @@ document.querySelector(".goals").addEventListener("click", handleGoalEdit);
 // Listen for add action item
 document.querySelector(".goals").addEventListener("click", handleGoalAddAction);
 
+// Listen for submitting the action modal
+document
+  .querySelector(".action-submit")
+  .addEventListener("click", handleGoalActionSubmit);
+
 // Listen for Back from edit
 document.querySelector("#goal-back").addEventListener("click", e => {
   ui.changeFormState("add");
@@ -112,14 +117,9 @@ function handleGoalEdit(e) {
         e.target.parentElement.previousElementSibling.previousElementSibling
           .previousElementSibling.previousElementSibling.textContent;
 
-      const date =
-        e.target.parentElement.previousElementSibling.previousElementSibling
-          .previousElementSibling.children[0].textContent;
-
       const description =
         e.target.parentElement.previousElementSibling.previousElementSibling
           .textContent;
-      const dateObj = new Date(date);
 
       const formData = {
         id,
@@ -138,12 +138,44 @@ function handleGoalEdit(e) {
 }
 
 function handleGoalAddAction(e) {
-
   if (e.target.parentNode.classList.contains("add-action")) {
     const id = parseInt(e.target.parentNode.dataset.id);
-    console.log(`Add action item to goal ${id}.`);
+    const actionSubmitButton = document.querySelector(".action-submit");
+
+    actionSubmitButton.dataset.id = id;
+    console.log(actionSubmitButton);
   }
   e.preventDefault();
+}
+
+function handleGoalActionSubmit(e) {
+  const id = parseInt(e.target.dataset.id);
+
+  http
+    .get(`http://localhost:3000/goals/${id}`)
+    .then(data => {
+      data.action_items.push({
+        action_date: new Date(),
+        action_summary: ui.getActionSummary()
+      });
+      http
+        .put(`http://localhost:3000/goals/${id}`, data)
+        .then(data => {
+          getGoals();
+          ui.changeFormState("add");
+          ui.showNotification(
+            "Action item added successfully.",
+            "alert-success"
+          );
+        })
+        .catch(err =>
+          ui.showNotification(
+            "Something went wrong, goal could not be updated. Please, try again.",
+            "alert-danger"
+          )
+        );
+    })
+    .catch(err => ui.showNotification(err, "alert-danter"));
 }
 
 // TODO: when category is implemented on form, add it to the object
