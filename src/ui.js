@@ -5,6 +5,7 @@ class UI {
     this.details = document.querySelector("#goal-details");
     this.submitGoal = document.querySelector("#goal-submit");
     this.goals = document.querySelector(".goals");
+    this.back = document.querySelector("#goal-back");
   }
 
   // show the goals in the list
@@ -38,9 +39,12 @@ class UI {
     if (selectedMode === "edit") {
       this.submitGoal.textContent = "Update Goal";
       this.submitGoal.className = "btn btn-warning btn-block";
+
+      this.back.style = "display: block";
     } else if (selectedMode === "add") {
       this.submitGoal.textContent = "Add Goal";
       this.submitGoal.className = "btn btn-primary btn-block";
+      this.back.style = "display: none";
 
       // clear the id to represent "nothing is selected" mode
       this.id.value = "";

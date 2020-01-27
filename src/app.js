@@ -14,6 +14,13 @@ document.querySelector(".goals").addEventListener("click", handleGoalDelete);
 
 // Listen for Edit Goal
 document.querySelector(".goals").addEventListener("click", handleGoalEdit);
+
+// Listen for Back from edit
+document.querySelector("#goal-back").addEventListener("click", e => {
+  ui.changeFormState("add");
+  e.preventDefault();
+});
+
 // Fetch the goals to initialize the app
 function getGoals() {
   http
