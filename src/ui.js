@@ -123,6 +123,10 @@ class UI {
           <a href="#" class="edit-goal card-link" data-id="${id}" data-toggle="tooltip" data-placement="top" title="Edit goal">
             <i style="color: blue" class="fa fa-pencil"></i>
           </a>
+          <a href="#" data-toggle="modal"
+              data-target="#basicExampleModal" class="add-action card-link" data-id="${id}" data-toggle="tooltip" data-placement="top" title="Add action item">
+            <i style="color: green" class="fa fa-plus"></i>
+          </a>
         </div>
       </div><br>`;
 

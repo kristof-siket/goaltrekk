@@ -15,6 +15,9 @@ document.querySelector(".goals").addEventListener("click", handleGoalDelete);
 // Listen for Edit Goal
 document.querySelector(".goals").addEventListener("click", handleGoalEdit);
 
+// Listen for add action item
+document.querySelector(".goals").addEventListener("click", handleGoalAddAction);
+
 // Listen for Back from edit
 document.querySelector("#goal-back").addEventListener("click", e => {
   ui.changeFormState("add");
@@ -131,6 +134,15 @@ function handleGoalEdit(e) {
     }
   }
 
+  e.preventDefault();
+}
+
+function handleGoalAddAction(e) {
+
+  if (e.target.parentNode.classList.contains("add-action")) {
+    const id = parseInt(e.target.parentNode.dataset.id);
+    console.log(`Add action item to goal ${id}.`);
+  }
   e.preventDefault();
 }
 
