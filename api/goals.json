@@ -1,0 +1,42 @@
+{
+  "goals": [
+    {
+      "title": "Reach 97kg series weight in bench press",
+      "description": "I want to gain back my pushing power to the level where it was some years ago. However, this is not the most important thing now as running is the prio.",
+      "date": "2020-01-27T18:28:39.438Z",
+      "deadline": "2020-01-27T18:28:39.438Z",
+      "category": "General",
+      "action_items": [
+        {
+          "action_date": "2020-01-27T19:42:58.552Z",
+          "action_summary": "New way to train my chest with pre-burnout series."
+        }
+      ],
+      "closed": "false",
+      "conclusion": "",
+      "id": 1
+    },
+    {
+      "title": "Learn Python deeply",
+      "description": "I want to learn Python basics and then dig deep into data science.",
+      "date": "2020-01-25T16:58:41.728Z",
+      "deadline": "2020-01-25T16:58:41.728Z",
+      "category": "General",
+      "action_items": [],
+      "closed": "false",
+      "conclusion": "",
+      "id": 2
+    },
+    {
+      "title": "Go to a different planet",
+      "description": "I've never ever left Europe in my life, at the age of 23, it's time to do that!",
+      "date": "2020-01-25T17:04:35.209Z",
+      "deadline": "2020-01-25T17:04:35.209Z",
+      "category": "General",
+      "action_items": [],
+      "closed": "false",
+      "conclusion": "",
+      "id": 4
+    }
+  ]
+}
