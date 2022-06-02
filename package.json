@@ -9,7 +9,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open chrome --hot",
+    "start": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open google-chrome",
     "build": "webpack --mode production --progress",
     "json:server": "json-server --watch api/goals.json"
   },
