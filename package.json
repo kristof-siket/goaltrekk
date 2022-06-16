@@ -2,14 +2,16 @@
   "name": "babel_webpack_starter",
   "version": "1.0.0",
   "description": "Starter pack for compiling ES6+ apps to ES5",
-  "engines" : { 
-    "npm" : ">=8.0.0",
-    "node" : "16.1.0"
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": "16.1.0"
   },
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx http-server",
+    "start": "concurrently --kill-others \"npm run start-client\" \"npm run start-api\"",
+    "start-api": "cd api/goaltrekker-model && npm start",
+    "start-client": "npx http-server && cd api/goaltrekker-model && npm start",
     "build": "webpack --mode production --progress",
     "json:server": "json-server --watch api/goals.json"
   },
@@ -20,6 +22,7 @@
     "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "babel-loader": "^8.0.5",
+    "concurrently": "^7.2.2",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.10"
