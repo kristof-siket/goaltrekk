@@ -9,7 +9,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently --kill-others \"npm run start-client\" \"npm run start-api\"",
+    "install-client": "npm install",
+    "install-api": "cd api/goaltrekker-model && npm install",
+    "start": "npm run install-api && concurrently --kill-others \"npm run start-client\" \"npm run start-api\"",
     "dev": "concurrently --kill-others \"npm run start-client-dev\" \"npm run start-api\"",
     "start-api": "cd api/goaltrekker-model && npm start",
     "start-client": "npx http-server -c-1",
