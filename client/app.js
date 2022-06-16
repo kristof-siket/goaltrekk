@@ -2,7 +2,7 @@ import { http } from "./http";
 import { ui } from "./ui";
 
 // Load api base url from env
-const apiBaseUrl = 'goal-tracker-system-f0jd3.goal-tracker-system-f0jd3.svc.cluster.local';
+const apiBaseUrl = 'http://goal-tracker-system-f0jd3.goal-tracker-system-f0jd3.svc.cluster.local';
 
 // Get posts on DOM load
 document.addEventListener("DOMContentLoaded", getGoals);
