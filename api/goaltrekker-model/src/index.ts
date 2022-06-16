@@ -67,6 +67,20 @@ AppDataSource.initialize().then(async () => {
         reply.send(goal)
     })
 
+    fastify.put<{Params: {id: ObjectID}, Body: Goal}>('/goals/:id', async (request, reply) => {
+        const id = request.params.id
+        const goal = request.body
+        await AppDataSource.manager.update(Goal, id, goal)
+        reply.send(goal)
+    })
+
+    fastify.delete<{Params: {id: ObjectID}}>('/goals/:id', async (request, reply) => {
+        const id = request.params.id
+        await AppDataSource.manager.delete(Goal, id)
+        reply.send({})
+    })
+
+
     const start = async () => {
         try {
           await fastify.listen({ port: parseInt(API_PORT) })
