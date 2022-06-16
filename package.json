@@ -16,7 +16,9 @@
     "start-api": "cd api/goaltrekker-model && npm start",
     "start-client": "npx http-server -c-1",
     "start-client-dev": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open google-chrome",
-    "build": "webpack --mode production --progress",
+    "build-client": "webpack --progress --mode production --progress",
+    "build-api": "cd api/goaltrekker-model && npm run build",
+    "build": "concurrently \"npm run build-api\" \"npm run build-client\"",
     "json:server": "json-server --watch api/goals.json"
   },
   "author": "Brad Traversy",
