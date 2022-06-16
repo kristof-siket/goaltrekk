@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "install-client": "npm install",
     "install-api": "cd api/goaltrekker-model && npm install",
-    "start": "npm run install-api && concurrently --kill-others \"npm run start-client\" \"npm run start-api\"",
+    "start": "npm run install-api && concurrently \"npm run start-client\" \"npm run start-api\"",
     "dev": "concurrently --kill-others \"npm run start-client-dev\" \"npm run start-api\"",
     "start-api": "cd api/goaltrekker-model && npm start",
     "start-client": "npx http-server -c-1",
