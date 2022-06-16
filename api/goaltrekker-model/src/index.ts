@@ -62,9 +62,10 @@ AppDataSource.initialize().then(async () => {
     })
 
     fastify.post<{Body: Goal}>('/goals', async (request, reply) => {
-        const goal = request.body
-        await AppDataSource.manager.save(goal)
-        reply.send(goal)
+        const savedGoal = new Goal()
+        Object.assign(savedGoal, request.body)
+        await AppDataSource.manager.save(savedGoal)
+        reply.send(savedGoal)
     })
 
     fastify.put<{Params: {id: ObjectID}, Body: Goal}>('/goals/:id', async (request, reply) => {

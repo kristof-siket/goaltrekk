@@ -1,6 +1,9 @@
 import { http } from "./http";
 import { ui } from "./ui";
 
+// Load api base url from env
+const apiBaseUrl = process.env.API_BASE_URL ?? 'http://localhost:5000';
+
 // Get posts on DOM load
 document.addEventListener("DOMContentLoaded", getGoals);
 
@@ -32,7 +35,7 @@ document.querySelector("#goal-back").addEventListener("click", e => {
 // Fetch the goals to initialize the app
 function getGoals() {
   http
-    .get("http://localhost:5000/goals")
+    .get(`${apiBaseUrl}/goals`)
     .then(data => ui.showGoals(data))
     .catch(err => console.log(err));
 }
@@ -45,7 +48,7 @@ function handleGoalSubmit(e) {
 
     if (formInput.id === "") {
       http
-        .post("http://localhost:5000/goals", postData)
+        .post(`${apiBaseUrl}/goals`, postData)
         .then(data => {
           getGoals();
           ui.clearForm();
@@ -62,7 +65,7 @@ function handleGoalSubmit(e) {
       postData.date = new Date().toJSON();
 
       http
-        .put(`http://localhost:5000/goals/${formInput.id}`, postData)
+        .put(`${apiBaseUrl}/goals/${formInput.id}`, postData)
         .then(data => {
           getGoals();
           ui.changeFormState("add");
@@ -85,11 +88,12 @@ function handleGoalSubmit(e) {
 // Handle removing an existing goal
 function handleGoalDelete(e) {
   if (e.target.parentNode.classList.contains("remove-goal")) {
-    const id = parseInt(e.target.parentNode.dataset.id);
+    const id = e.target.parentNode.dataset.id;
+    console.log(id);
 
     if (id && confirm("Are you sure?")) {
       http
-        .delete(`http://localhost:5000/goals/${id}`)
+        .delete(`${apiBaseUrl}/goals/${id}`)
         .then(data => {
           getGoals();
           ui.showNotification("Goal deleted successfully.", "alert-success");
@@ -152,14 +156,14 @@ function handleGoalActionSubmit(e) {
   const id = parseInt(e.target.dataset.id);
 
   http
-    .get(`http://localhost:5000/goals/${id}`)
+    .get(`${apiBaseUrl}/goals/${id}`)
     .then(data => {
       data.action_items.push({
         action_date: new Date(),
         action_summary: ui.getActionSummary()
       });
       http
-        .put(`http://localhost:5000/goals/${id}`, data)
+        .put(`${apiBaseUrl}/${id}`, data)
         .then(data => {
           getGoals();
           ui.changeFormState("add");

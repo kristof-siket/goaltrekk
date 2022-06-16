@@ -1,7 +1,7 @@
 {
-  "name": "babel_webpack_starter",
+  "name": "goaltrekker",
   "version": "1.0.0",
-  "description": "Starter pack for compiling ES6+ apps to ES5",
+  "description": "Goal Trekking app",
   "engines": {
     "npm": ">=8.0.0",
     "node": "16.1.0"
@@ -9,7 +9,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "npm i -g typescript",
+    "preinstall": "npm i -g typescript --force",
     "install-client": "npm install",
     "install-api": "cd api/goaltrekker-model && npm install",
     "start": "concurrently \"npm run start-client\" \"npm run start-api\"",
@@ -33,5 +33,8 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.10"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1"
   }
 }
