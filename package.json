@@ -10,8 +10,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently --kill-others \"npm run start-client\" \"npm run start-api\"",
+    "dev": "concurrently --kill-others \"npm run start-client-dev\" \"npm run start-api\"",
     "start-api": "cd api/goaltrekker-model && npm start",
-    "start-client": "npx http-server && cd api/goaltrekker-model && npm start",
+    "start-client": "npx http-server -c-1",
+    "start-client-dev": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open google-chrome",
     "build": "webpack --mode production --progress",
     "json:server": "json-server --watch api/goals.json"
   },
