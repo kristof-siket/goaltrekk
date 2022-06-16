@@ -1,3 +1,4 @@
+import "dotenv/config"
 import { AppDataSource } from "./data-source"
 import { ActionItem, Goal } from "./entity"
 
