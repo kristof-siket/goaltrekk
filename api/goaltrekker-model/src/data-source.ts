@@ -9,7 +9,7 @@ export const AppDataSource = new DataSource({
     database: MONGODB_DBNAME,
     username: MONGODB_USER,
     password: MONGODB_PASSWORD,
-    authSource: "admin",
+    authSource: process.env.NODE_ENV === "development" ? "admin" : undefined,
     port: parseInt(MONGODB_PORT),
     synchronize: true,
     logging: false,
