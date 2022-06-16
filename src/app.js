@@ -32,7 +32,7 @@ document.querySelector("#goal-back").addEventListener("click", e => {
 // Fetch the goals to initialize the app
 function getGoals() {
   http
-    .get("http://localhost:3000/goals")
+    .get("http://localhost:5000/goals")
     .then(data => ui.showGoals(data))
     .catch(err => console.log(err));
 }
@@ -45,7 +45,7 @@ function handleGoalSubmit(e) {
 
     if (formInput.id === "") {
       http
-        .post("http://localhost:3000/goals", postData)
+        .post("http://localhost:5000/goals", postData)
         .then(data => {
           getGoals();
           ui.clearForm();
@@ -62,7 +62,7 @@ function handleGoalSubmit(e) {
       postData.date = new Date().toJSON();
 
       http
-        .put(`http://localhost:3000/goals/${formInput.id}`, postData)
+        .put(`http://localhost:5000/goals/${formInput.id}`, postData)
         .then(data => {
           getGoals();
           ui.changeFormState("add");
@@ -89,7 +89,7 @@ function handleGoalDelete(e) {
 
     if (id && confirm("Are you sure?")) {
       http
-        .delete(`http://localhost:3000/goals/${id}`)
+        .delete(`http://localhost:5000/goals/${id}`)
         .then(data => {
           getGoals();
           ui.showNotification("Goal deleted successfully.", "alert-success");
@@ -152,14 +152,14 @@ function handleGoalActionSubmit(e) {
   const id = parseInt(e.target.dataset.id);
 
   http
-    .get(`http://localhost:3000/goals/${id}`)
+    .get(`http://localhost:5000/goals/${id}`)
     .then(data => {
       data.action_items.push({
         action_date: new Date(),
         action_summary: ui.getActionSummary()
       });
       http
-        .put(`http://localhost:3000/goals/${id}`, data)
+        .put(`http://localhost:5000/goals/${id}`, data)
         .then(data => {
           getGoals();
           ui.changeFormState("add");

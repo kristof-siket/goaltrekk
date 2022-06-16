@@ -1,6 +1,10 @@
 import "dotenv/config"
+import Fastify from 'fastify'
+import cors from '@fastify/cors'
+import { ObjectID } from "typeorm"
 import { AppDataSource } from "./data-source"
 import { ActionItem, Goal } from "./entity"
+import { API_PORT } from "./utils/environment"
 
 AppDataSource.initialize().then(async () => {
 
@@ -32,10 +36,46 @@ AppDataSource.initialize().then(async () => {
     await AppDataSource.manager.save(goal)
     console.log("Saved a new goal with id: " + goal.id)
 
-    console.log("Loading goals from the database...")
-    const goals = await AppDataSource.manager.find(Goal)
-    console.log("Loaded goals: ", goals)
+    console.log("Setting up Fastify...")
 
-    console.log("Here you can setup and run express / fastify / any other framework.")
+    const fastify = Fastify({
+        logger: true,
+    })
+
+    fastify.register(cors, {
+        origin: "*",
+    })
+
+    fastify.get('/goals', async (request, reply) => {
+        const goals = await AppDataSource.manager.find(Goal)
+        reply.send(goals)
+    })
+
+    fastify.get<{Params: {id: ObjectID }}>('/goals/:id',  async (request, reply) => {
+        const id = request.params.id
+        const goal = await AppDataSource.manager.findOne(Goal, {
+            where: {
+                id: id
+            }
+        })
+        reply.send(goal)
+    })
+
+    fastify.post<{Body: Goal}>('/goals', async (request, reply) => {
+        const goal = request.body
+        await AppDataSource.manager.save(goal)
+        reply.send(goal)
+    })
+
+    const start = async () => {
+        try {
+          await fastify.listen({ port: parseInt(API_PORT) })
+          console.log(`server listening on ${API_PORT}`)
+        } catch (err) {
+          fastify.log.error(err)
+          process.exit(1)
+        }
+      }
+      start()
 
 }).catch(error => console.log(error))
