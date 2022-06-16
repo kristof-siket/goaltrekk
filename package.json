@@ -1,16 +1,25 @@
 {
-  "name": "babel_webpack_starter",
+  "name": "goaltrekker",
   "version": "1.0.0",
-  "description": "Starter pack for compiling ES6+ apps to ES5",
-  "engines" : { 
-    "npm" : ">=8.0.0",
-    "node" : "16.1.0"
+  "description": "Goal Trekking app",
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": "16.1.0"
   },
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx http-server",
-    "build": "webpack --mode production --progress",
+    "preinstall": "npm i -g typescript --force",
+    "install-client": "npm install",
+    "install-api": "cd api/goaltrekker-model && npm install",
+    "start": "concurrently \"npm run start-client\" \"npm run start-api\"",
+    "dev": "concurrently --kill-others \"npm run start-client-dev\" \"npm run start-api\"",
+    "start-api": "cd api/goaltrekker-model && npm start",
+    "start-client": "npx http-server -c-1",
+    "start-client-dev": "webpack-dev-server --output-public-path=/build/  --mode development --progress --open google-chrome",
+    "build-client": "webpack --progress --mode production --progress",
+    "build-api": "cd api/goaltrekker-model && npm run build",
+    "build": "npm run install-api && concurrently \"npm run build-api\" \"npm run build-client\"",
     "json:server": "json-server --watch api/goals.json"
   },
   "author": "Brad Traversy",
@@ -20,8 +29,12 @@
     "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "babel-loader": "^8.0.5",
+    "concurrently": "^7.2.2",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.10"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1"
   }
 }
