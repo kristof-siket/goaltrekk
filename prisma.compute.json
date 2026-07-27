@@ -1,0 +1,13 @@
+{
+  "region": "eu-central-1",
+  "app": {
+    "name": "babel-webpack-starter",
+    "framework": "bun",
+    "entry": "src/app.js",
+    "httpPort": 3000,
+    "build": {
+      "command": "npm run build",
+      "outputDirectory": "."
+    }
+  }
+}
