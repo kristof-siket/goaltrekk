@@ -10,6 +10,10 @@
         {
           "action_date": "2020-01-27T19:42:58.552Z",
           "action_summary": "New way to train my chest with pre-burnout series."
+        },
+        {
+          "action_date": "2022-06-02T09:18:32.232Z",
+          "action_summary": "Started to go to the gym"
         }
       ],
       "closed": "false",
@@ -48,6 +52,17 @@
       "closed": "false",
       "conclusion": "",
       "id": 5
+    },
+    {
+      "title": "Set up a MongoDB on Kinsta Cloud",
+      "description": "Not using JSON anymore as a db",
+      "date": "2022-06-02T09:26:44.541Z",
+      "deadline": "2022-06-02T09:26:44.541Z",
+      "category": "General",
+      "action_items": [],
+      "closed": "false",
+      "conclusion": "",
+      "id": 6
     }
   ]
 }
