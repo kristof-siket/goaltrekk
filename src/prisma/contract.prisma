@@ -1,0 +1,21 @@
+// use prisma-8
+
+// The goals the app tracks. Action items ride with their goal as a list of
+// value objects, stored as one jsonb column — the same shape the frontend
+// sends and reads.
+type ActionItem {
+  actionDate    DateTime
+  actionSummary String
+}
+
+model Goal {
+  id          Int          @id @default(autoincrement())
+  title       String
+  description String
+  date        DateTime
+  deadline    DateTime
+  category    String
+  actionItems ActionItem[]
+  closed      Boolean      @default(false)
+  conclusion  String
+}
