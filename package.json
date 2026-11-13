@@ -9,19 +9,33 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx http-server",
-    "build": "webpack --mode production --progress",
+    "start": "bun src/index.ts",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider webpack --mode production --progress && node scripts/prepare-dist.mjs",
     "json:server": "json-server --watch api/goals.json"
   },
   "author": "Brad Traversy",
   "license": "MIT",
+  "dependencies": {
+    "@prisma/composer": "0.38.0",
+    "@prisma/composer-prisma-cloud": "0.38.0",
+    "@prisma/orm-postgres": "8.0.0-rc.23",
+    "effect": "4.0.5"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "babel-loader": "^8.0.5",
+    "prisma": "8.0.0-rc.33",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.10"
+  },
+  "overrides": {
+    "effect": "4.0.5",
+    "@effect/vitest": "4.0.5",
+    "@effect/platform-bun": "4.0.5",
+    "@effect/platform-node": "4.0.5",
+    "@effect/platform-node-shared": "4.0.5"
   }
 }
